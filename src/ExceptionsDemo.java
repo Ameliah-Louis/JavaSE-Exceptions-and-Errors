@@ -55,12 +55,27 @@ public class ExceptionsDemo {
         System.out.println("Liste finale : " + inscrits);
     }
 
+    // Exercice 3 - Lecture de fichier CSV
+    public static void lireFichierCSV() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/etudiants.csv"))) {
+            String ligne;
+            while ((ligne = reader.readLine()) != null) {
+                System.out.println("Nom : " + ligne);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Fichier non trouvé : " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Erreur de lecture : " + e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         // Appels de test en try/catch
         try {
             distributeurAutomatique();
             scanner.nextLine(); // vider le buffer
             inscriptionEvenement();
+            lireFichierCSV();
         } catch (Exception e) {
             System.out.println("Exception par défaut capturée : " + e.getMessage());
         }
