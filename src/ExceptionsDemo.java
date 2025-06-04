@@ -69,6 +69,21 @@ public class ExceptionsDemo {
         }
     }
 
+    // Exercice 4 - Catalogue de livres
+    public static void catalogueLivres() {
+        String[] livres = {"Le Petit Prince", "1984", "Le Seigneur des Anneaux", "Germinal"};
+        try {
+            System.out.print("Index du livre à afficher : ");
+            int index = Integer.parseInt(scanner.nextLine());
+            System.out.println("Livre choisi : " + livres[index]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Index invalide : " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Veuillez entrer un entier valide.");
+        }
+    }
+
+
     public static void main(String[] args) {
         // Appels de test en try/catch
         try {
@@ -76,6 +91,7 @@ public class ExceptionsDemo {
             scanner.nextLine(); // vider le buffer
             inscriptionEvenement();
             lireFichierCSV();
+            catalogueLivres();
         } catch (Exception e) {
             System.out.println("Exception par défaut capturée : " + e.getMessage());
         }
