@@ -88,7 +88,7 @@ public class ExceptionsDemo {
         System.out.print("Saisir une expression (ex: 4 + 2) : ");
         String expression = scanner.nextLine();
         try {
-            String[] parties = expression.split(" ");
+            String[] parties = expression.trim().split(" ");
             if (parties.length != 3) throw new IllegalArgumentException("Format invalide (attendu : a + b)");
 
             int a = Integer.parseInt(parties[0]);
