@@ -83,6 +83,35 @@ public class ExceptionsDemo {
         }
     }
 
+    // Exercice 5 — Analyseur de chaînes (calcul simple)
+    public static void analyseurDeChaines() {
+        System.out.print("Saisir une expression (ex: 4 + 2) : ");
+        String expression = scanner.nextLine();
+        try {
+            String[] parties = expression.split(" ");
+            if (parties.length != 3) throw new IllegalArgumentException("Format invalide (attendu : a + b)");
+
+            int a = Integer.parseInt(parties[0]);
+            int b = Integer.parseInt(parties[2]);
+            String operateur = parties[1];
+
+            int resultat;
+            switch (operateur) {
+                case "+": resultat = a + b; break;
+                case "-": resultat = a - b; break;
+                case "*": resultat = a * b; break;
+                case "/": resultat = a / b; break;
+                default: throw new IllegalArgumentException("Opérateur non reconnu");
+            }
+            System.out.println("Résultat : " + resultat);
+        } catch (NumberFormatException e) {
+            System.out.println("Erreur de conversion : " + e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("Erreur de calcul : " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erreur : " + e.getMessage());
+        }
+    }
 
     public static void main(String[] args) {
         // Appels de test en try/catch
@@ -92,6 +121,7 @@ public class ExceptionsDemo {
             inscriptionEvenement();
             lireFichierCSV();
             catalogueLivres();
+            analyseurDeChaines();
         } catch (Exception e) {
             System.out.println("Exception par défaut capturée : " + e.getMessage());
         }
